@@ -5,7 +5,6 @@ import com.dev.cinema.lib.Dao;
 import com.dev.cinema.model.MovieSession;
 import com.dev.cinema.util.HibernateUtil;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import org.hibernate.Session;
@@ -20,19 +19,17 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
-        LocalDateTime startTime = date.atStartOfDay();
-        LocalDateTime endTime = date.atTime(LocalTime.MAX);
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<MovieSession> query = session.createQuery(
-                    "SELECT ms FROM MovieSession ms "
+                    "FROM MovieSession ms "
                     + "join fetch ms.cinemaHall "
                     + "join fetch ms.movie "
                     + "WHERE movie_id = :movieId "
                     + "AND showtime BETWEEN :startTime AND :endTime",
                     MovieSession.class);
             query.setParameter("movieId", movieId);
-            query.setParameter("startTime", startTime);
-            query.setParameter("endTime", endTime);
+            query.setParameter("startTime", date.atStartOfDay());
+            query.setParameter("endTime", date.atTime(LocalTime.MAX));
             return query.getResultList();
         }
     }
