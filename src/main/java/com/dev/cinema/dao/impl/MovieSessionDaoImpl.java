@@ -24,9 +24,12 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
         LocalDateTime endTime = date.atTime(LocalTime.MAX);
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<MovieSession> query = session.createQuery(
-                    "FROM MovieSession WHERE movie_id = :movieId "
-                                 + "AND showtime BETWEEN :startTime AND :endTime",
-                            MovieSession.class);
+                    "SELECT ms FROM MovieSession ms "
+                    + "join fetch ms.cinemaHall "
+                    + "join fetch ms.movie "
+                    + "WHERE movie_id = :movieId "
+                    + "AND showtime BETWEEN :startTime AND :endTime",
+                    MovieSession.class);
             query.setParameter("movieId", movieId);
             query.setParameter("startTime", startTime);
             query.setParameter("endTime", endTime);
