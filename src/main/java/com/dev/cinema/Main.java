@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
-        Movie fast = new Movie();
-        fast.setTitle("Fast and Furious");
+        Movie fastAndFurious = new Movie();
+        fastAndFurious.setTitle("Fast and Furious");
         MovieService movieService = (MovieService) Injector.getInstance(MovieService.class);
-        movieService.add(fast);
+        movieService.add(fastAndFurious);
 
         Movie titanic = new Movie();
         titanic.setTitle("Titanic");
@@ -32,7 +32,7 @@ public class Main {
 
         MovieSession session = new MovieSession();
         session.setCinemaHall(cinemaHall);
-        session.setMovie(fast);
+        session.setMovie(fastAndFurious);
         session.setShowTime(LocalDateTime.now());
         MovieSessionService sessionService
                 = (MovieSessionService) Injector.getInstance(MovieSessionService.class);
@@ -46,7 +46,7 @@ public class Main {
 
         session = new MovieSession();
         session.setCinemaHall(cinemaHall);
-        session.setMovie(fast);
+        session.setMovie(fastAndFurious);
         session.setShowTime(LocalDateTime.now().minusDays(2));
         sessionService.add(session);
 
