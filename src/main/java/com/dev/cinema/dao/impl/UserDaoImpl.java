@@ -6,7 +6,6 @@ import com.dev.cinema.model.User;
 import com.dev.cinema.util.HibernateUtil;
 import java.util.Optional;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 @Dao
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
@@ -18,10 +17,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public Optional<User> findByEmail(String email) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<User> query = session.createQuery(
-                    "from User u where u.email = :email", User.class);
-            query.setParameter("email", email);
-            return query.uniqueResultOptional();
+            return session.createQuery("from User u where u.email = :email", User.class)
+                    .setParameter("email", email)
+                    .uniqueResultOptional();
         }
     }
 }
