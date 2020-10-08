@@ -62,6 +62,7 @@ public class Injector {
                     interfaceImplementations.put(implInterface, instance);
                 }
             }
+            getInstance(clazz.getInterfaces()[0]);
         }
     }
 
