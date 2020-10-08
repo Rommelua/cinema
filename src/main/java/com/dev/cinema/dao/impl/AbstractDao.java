@@ -22,7 +22,7 @@ public class AbstractDao<T> {
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't insert "
-                                              + clazz.getSimpleName() + " entity", e);
+                    + clazz.getSimpleName() + " entity", e);
         } finally {
             if (session != null) {
                 session.close();
@@ -34,6 +34,27 @@ public class AbstractDao<T> {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<T> query = session.createQuery("from " + clazz.getSimpleName(), clazz);
             return query.getResultList();
+        }
+    }
+
+    protected void update(T instance, Class<T> clazz) {
+        Transaction transaction = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            session.merge(instance);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new DataProcessingException("Can't update "
+                    + clazz.getSimpleName() + " entity", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 }
