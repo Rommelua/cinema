@@ -62,8 +62,6 @@ public class Main {
         authenticationService.register("alisa@gmail.com", "1111");
         User bob = authenticationService.login("bob@gmail.com", "1111");
         User alisa = authenticationService.login("alisa@gmail.com", "1111");
-        cartService.registerNewShoppingCart(alisa);
-        cartService.registerNewShoppingCart(bob);
         System.out.println(cartService.getByUser(bob));
         cartService.addSession(sessionOne, bob);
         cartService.addSession(sessionOne, bob);
