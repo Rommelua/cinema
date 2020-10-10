@@ -5,14 +5,17 @@ import com.dev.cinema.lib.Injector;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.Order;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import com.dev.cinema.service.interfaces.AuthenticationService;
 import com.dev.cinema.service.interfaces.CinemaHallService;
 import com.dev.cinema.service.interfaces.MovieService;
 import com.dev.cinema.service.interfaces.MovieSessionService;
+import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     private static final MovieService movieService
@@ -25,6 +28,8 @@ public class Main {
             = (AuthenticationService) Injector.getInstance(AuthenticationService.class);
     private static final ShoppingCartService cartService
             = (ShoppingCartService) Injector.getInstance(ShoppingCartService.class);
+    private static final OrderService orderService
+            = (OrderService) Injector.getInstance(OrderService.class);
 
     public static void main(String[] args) throws AuthenticationException {
         Movie fastAndFurious = new Movie();
@@ -67,8 +72,9 @@ public class Main {
         cartService.addSession(sessionOne, bob);
         cartService.addSession(sessionTwo, bob);
         ShoppingCart cart = cartService.getByUser(bob);
-        System.out.println(cart);
+        orderService.completeOrder(cart.getTickets(), cart.getUser());
         cartService.clear(cart);
-        System.out.println(cart);
+        List<Order> orders = orderService.getOrderHistory(cart.getUser());
+        System.out.println(orders.get(0));
     }
 }
