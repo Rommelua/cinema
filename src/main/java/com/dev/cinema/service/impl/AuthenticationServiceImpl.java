@@ -4,9 +4,9 @@ import com.dev.cinema.exception.AuthenticationException;
 import com.dev.cinema.lib.Inject;
 import com.dev.cinema.lib.Service;
 import com.dev.cinema.model.User;
-import com.dev.cinema.service.AuthenticationService;
-import com.dev.cinema.service.ShoppingCartService;
-import com.dev.cinema.service.UserService;
+import com.dev.cinema.service.interfaces.AuthenticationService;
+import com.dev.cinema.service.interfaces.ShoppingCartService;
+import com.dev.cinema.service.interfaces.UserService;
 import com.dev.cinema.util.HashUtil;
 import java.util.Optional;
 

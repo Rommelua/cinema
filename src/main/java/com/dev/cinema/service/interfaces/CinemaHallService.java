@@ -1,9 +1,9 @@
-package com.dev.cinema.dao;
+package com.dev.cinema.service.interfaces;
 
 import com.dev.cinema.model.CinemaHall;
 import java.util.List;
 
-public interface CinemaHallDao {
+public interface CinemaHallService {
     CinemaHall add(CinemaHall cinemaHall);
 
     List<CinemaHall> getAll();
