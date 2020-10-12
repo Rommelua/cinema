@@ -18,9 +18,9 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     @Override
     public List<Order> getByUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Order o "
+            return session.createQuery("select distinct o from Order o "
                                        + "join fetch o.tickets "
-                                       + "where o.user = :user ", Order.class)
+                                       + "where o.user = :user", Order.class)
                     .setParameter("user", user)
                     .getResultList();
         }

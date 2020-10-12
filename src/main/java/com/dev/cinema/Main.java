@@ -75,6 +75,6 @@ public class Main {
         orderService.completeOrder(cart.getTickets(), cart.getUser());
         cartService.clear(cart);
         List<Order> orders = orderService.getOrderHistory(cart.getUser());
-        System.out.println(orders.get(0));
+        orders.forEach(System.out::println);
     }
 }
