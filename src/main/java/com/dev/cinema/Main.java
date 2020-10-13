@@ -72,8 +72,7 @@ public class Main {
         cartService.addSession(sessionOne, bob);
         cartService.addSession(sessionTwo, bob);
         ShoppingCart cart = cartService.getByUser(bob);
-        orderService.completeOrder(cart.getTickets(), cart.getUser());
-        cartService.clear(cart);
+        orderService.completeOrder(cart);
         List<Order> orders = orderService.getOrderHistory(cart.getUser());
         orders.forEach(System.out::println);
     }
