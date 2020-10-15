@@ -16,6 +16,8 @@ import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
     private static final MovieService movieService
@@ -30,6 +32,7 @@ public class Main {
             = (ShoppingCartService) Injector.getInstance(ShoppingCartService.class);
     private static final OrderService orderService
             = (OrderService) Injector.getInstance(OrderService.class);
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws AuthenticationException {
         Movie fastAndFurious = new Movie();
@@ -66,14 +69,13 @@ public class Main {
         authenticationService.register("bob@gmail.com", "1111");
         authenticationService.register("alisa@gmail.com", "1111");
         User bob = authenticationService.login("bob@gmail.com", "1111");
-        User alisa = authenticationService.login("alisa@gmail.com", "1111");
-        System.out.println(cartService.getByUser(bob));
+        logger.info("bob's cart: " + cartService.getByUser(bob));
         cartService.addSession(sessionOne, bob);
         cartService.addSession(sessionOne, bob);
         cartService.addSession(sessionTwo, bob);
         ShoppingCart cart = cartService.getByUser(bob);
         orderService.completeOrder(cart);
         List<Order> orders = orderService.getOrderHistory(cart.getUser());
-        orders.forEach(System.out::println);
+        orders.forEach(order -> logger.info(order.toString()));
     }
 }
