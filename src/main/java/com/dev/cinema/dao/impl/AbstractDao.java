@@ -2,12 +2,17 @@ package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.exception.DataProcessingException;
 import com.dev.cinema.util.HibernateUtil;
+import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AbstractDao<T> {
+    private static final Logger logger = LoggerFactory.getLogger(AbstractDao.class);
+
     protected T add(T instance, Class<T> clazz) {
         Transaction transaction = null;
         Session session = null;
@@ -34,6 +39,9 @@ public class AbstractDao<T> {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<T> query = session.createQuery("from " + clazz.getSimpleName(), clazz);
             return query.getResultList();
+        } catch (Exception e) {
+            logger.error("Cant fetch all {} from DB", clazz.getName(), e);
+            return Collections.emptyList();
         }
     }
 
