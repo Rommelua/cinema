@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractDao<T> {
     private static final Logger logger = LoggerFactory.getLogger(AbstractDao.class);
-
     protected final SessionFactory sessionFactory;
 
     @Autowired
