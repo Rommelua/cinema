@@ -1,12 +1,17 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.MovieDao;
-import com.dev.cinema.lib.Dao;
 import com.dev.cinema.model.Movie;
 import java.util.List;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class MovieDaoImpl extends AbstractDao<Movie> implements MovieDao {
+    public MovieDaoImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
+
     @Override
     public Movie add(Movie movie) {
         return super.add(movie, Movie.class);

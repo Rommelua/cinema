@@ -1,19 +1,23 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.lib.Dao;
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.User;
-import com.dev.cinema.util.HibernateUtil;
 import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     private static final Logger logger = LoggerFactory.getLogger(OrderDaoImpl.class);
+
+    public OrderDaoImpl(SessionFactory sessionFactory) {
+        super(sessionFactory);
+    }
 
     @Override
     public Order add(Order order) {
@@ -22,7 +26,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
     @Override
     public List<Order> getByUser(User user) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             return session.createQuery("select distinct o from Order o "
                                        + "join fetch o.tickets "
                                        + "where o.user = :user", Order.class)
