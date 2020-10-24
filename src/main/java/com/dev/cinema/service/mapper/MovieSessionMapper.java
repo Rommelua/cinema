@@ -11,16 +11,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-    public MovieSessionResponseDto mapMovieSession(MovieSession movieSession) {
+    private static final DateTimeFormatter FORMATTER
+            = DateTimeFormatter.ofPattern("dd-MM-y HH:mm");
+
+    public MovieSessionResponseDto mapToDto(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
         dto.setId(movieSession.getId());
         dto.setCinemaHallId(movieSession.getCinemaHall().getId());
         dto.setMovieTitle(movieSession.getMovie().getTitle());
-        dto.setShowTime(movieSession.getShowTime().format(DateTimeFormatter.ISO_DATE_TIME));
+        dto.setShowTime(movieSession.getShowTime().format(FORMATTER));
         return dto;
     }
 
-    public MovieSession unmapMovieSession(MovieSessionRequestDto dto) {
+    public MovieSession mapToEntity(MovieSessionRequestDto dto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(new Movie(dto.getMovieId()));
         movieSession.setCinemaHall(new CinemaHall(dto.getCinemaHallId()));

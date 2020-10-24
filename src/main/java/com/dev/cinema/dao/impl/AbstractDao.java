@@ -42,6 +42,12 @@ public class AbstractDao<T> {
         }
     }
 
+    protected T get(Long id, Class<T> clazz) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(clazz, id);
+        }
+    }
+
     protected List<T> getAll(Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
             Query<T> query = session.createQuery("from " + clazz.getSimpleName(), clazz);

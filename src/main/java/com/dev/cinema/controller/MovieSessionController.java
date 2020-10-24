@@ -33,13 +33,13 @@ public class MovieSessionController {
     public List<MovieSessionResponseDto> getSessionsByDate(@RequestParam Long movieId,
                                                            @RequestParam LocalDate date) {
         return sessionService.findAvailableSessions(movieId, date).stream()
-                .map(sessionMapper::mapMovieSession)
+                .map(sessionMapper::mapToDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public void addSession(@RequestBody MovieSessionRequestDto dto) {
-        MovieSession session = sessionMapper.unmapMovieSession(dto);
+        MovieSession session = sessionMapper.mapToEntity(dto);
         sessionService.add(session);
     }
 }

@@ -46,4 +46,9 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
             return Collections.emptyList();
         }
     }
+
+    @Override
+    public MovieSession get(Long id) {
+        return super.get(id, MovieSession.class);
+    }
 }
