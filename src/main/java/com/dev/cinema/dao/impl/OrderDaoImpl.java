@@ -1,8 +1,8 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.model.Order;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.Order;
+import com.dev.cinema.model.entity.User;
 import java.util.Collections;
 import java.util.List;
 import org.hibernate.Session;

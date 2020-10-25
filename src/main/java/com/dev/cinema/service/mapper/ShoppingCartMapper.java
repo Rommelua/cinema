@@ -1,8 +1,8 @@
 package com.dev.cinema.service.mapper;
 
-import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.dto.ShoppingCartResponseDto;
 import com.dev.cinema.model.dto.TicketResponseDto;
+import com.dev.cinema.model.entity.ShoppingCart;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;

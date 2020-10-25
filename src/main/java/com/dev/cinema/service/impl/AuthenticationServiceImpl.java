@@ -1,7 +1,7 @@
 package com.dev.cinema.service.impl;
 
 import com.dev.cinema.exception.AuthenticationException;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.AuthenticationService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import com.dev.cinema.service.interfaces.UserService;

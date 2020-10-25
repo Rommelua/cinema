@@ -1,10 +1,10 @@
 package com.dev.cinema.service.impl;
 
 import com.dev.cinema.dao.interfaces.ShoppingCartDao;
-import com.dev.cinema.model.MovieSession;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.Ticket;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.MovieSession;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.Ticket;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;

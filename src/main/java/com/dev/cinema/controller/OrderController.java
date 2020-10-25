@@ -1,8 +1,8 @@
 package com.dev.cinema.controller;
 
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.User;
 import com.dev.cinema.model.dto.OrderResponseDto;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import com.dev.cinema.service.mapper.OrderMapper;

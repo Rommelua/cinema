@@ -1,15 +1,15 @@
 package com.dev.cinema.service.mapper;
 
-import com.dev.cinema.model.CinemaHall;
-import com.dev.cinema.model.Movie;
-import com.dev.cinema.model.MovieSession;
 import com.dev.cinema.model.dto.MovieSessionRequestDto;
 import com.dev.cinema.model.dto.MovieSessionResponseDto;
+import com.dev.cinema.model.entity.CinemaHall;
+import com.dev.cinema.model.entity.Movie;
+import com.dev.cinema.model.entity.MovieSession;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
-    public MovieSessionResponseDto mapMovieSession(MovieSession movieSession) {
+    public MovieSessionResponseDto mapToDto(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
         dto.setId(movieSession.getId());
         dto.setCinemaHallId(movieSession.getCinemaHall().getId());
@@ -18,7 +18,7 @@ public class MovieSessionMapper {
         return dto;
     }
 
-    public MovieSession unmapMovieSession(MovieSessionRequestDto dto) {
+    public MovieSession mapToEntity(MovieSessionRequestDto dto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(new Movie(dto.getMovieId()));
         movieSession.setCinemaHall(new CinemaHall(dto.getCinemaHallId()));

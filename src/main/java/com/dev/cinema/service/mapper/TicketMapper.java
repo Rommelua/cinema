@@ -1,7 +1,7 @@
 package com.dev.cinema.service.mapper;
 
-import com.dev.cinema.model.Ticket;
 import com.dev.cinema.model.dto.TicketResponseDto;
+import com.dev.cinema.model.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

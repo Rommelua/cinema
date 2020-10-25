@@ -1,4 +1,4 @@
-package com.dev.cinema.model;
+package com.dev.cinema.model.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,16 +18,16 @@ public class Order {
     private Long id;
     @OneToMany
     private List<Ticket> tickets;
-    private LocalDateTime orderDate;
+    private LocalDateTime orderTime;
     @ManyToOne
     private User user;
 
     public Order() {
     }
 
-    public Order(List<Ticket> tickets, LocalDateTime orderDate, User user) {
+    public Order(List<Ticket> tickets, LocalDateTime orderTime, User user) {
         this.tickets = tickets;
-        this.orderDate = orderDate;
+        this.orderTime = orderTime;
         this.user = user;
     }
 
@@ -47,12 +47,12 @@ public class Order {
         this.tickets = tickets;
     }
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
+    public LocalDateTime getOrderTime() {
+        return orderTime;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderTime(LocalDateTime orderDate) {
+        this.orderTime = orderDate;
     }
 
     public User getUser() {
@@ -66,6 +66,6 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" + "id=" + id + ", tickets=" + tickets + ", orderDate="
-               + orderDate + ", user=" + user + '}';
+               + orderTime + ", user=" + user + '}';
     }
 }

@@ -1,7 +1,7 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.User;
 import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

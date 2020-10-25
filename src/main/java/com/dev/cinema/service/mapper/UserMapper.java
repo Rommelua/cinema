@@ -1,7 +1,7 @@
 package com.dev.cinema.service.mapper;
 
-import com.dev.cinema.model.User;
 import com.dev.cinema.model.dto.UserResponseDto;
+import com.dev.cinema.model.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
