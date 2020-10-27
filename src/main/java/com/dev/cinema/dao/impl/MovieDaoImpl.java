@@ -1,7 +1,7 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.MovieDao;
-import com.dev.cinema.model.Movie;
+import com.dev.cinema.model.entity.Movie;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,7 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.UserDao;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.User;
 import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,6 +20,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     @Override
     public User add(User user) {
         return super.add(user, User.class);
+    }
+
+    @Override
+    public User get(Long id) {
+        return super.get(id, User.class);
     }
 
     @Override

@@ -1,5 +1,6 @@
-package com.dev.cinema.model;
+package com.dev.cinema.model.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,19 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cinema_halls")
-public class CinemaHall {
+@Table(name = "movies")
+public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int capacity;
+    @Column(nullable = false)
+    private String title;
     private String description;
 
-    public CinemaHall() {
+    public Movie(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
-    public CinemaHall(Long id) {
+    public Movie(Long id) {
         this.id = id;
+    }
+
+    public Movie() {
     }
 
     public Long getId() {
@@ -30,12 +37,12 @@ public class CinemaHall {
         this.id = id;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -48,7 +55,7 @@ public class CinemaHall {
 
     @Override
     public String toString() {
-        return "CinemaHall{" + "id=" + id + ", Capacity=" + capacity
+        return "Movie{" + "id=" + id + ", title='" + title + '\''
                + ", description='" + description + '\'' + '}';
     }
 }

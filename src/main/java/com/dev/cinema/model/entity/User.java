@@ -1,4 +1,4 @@
-package com.dev.cinema.model;
+package com.dev.cinema.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,6 +25,10 @@ public class User {
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

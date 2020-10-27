@@ -1,8 +1,8 @@
 package com.dev.cinema.controller;
 
-import com.dev.cinema.model.MovieSession;
 import com.dev.cinema.model.dto.MovieSessionRequestDto;
 import com.dev.cinema.model.dto.MovieSessionResponseDto;
+import com.dev.cinema.model.entity.MovieSession;
 import com.dev.cinema.service.interfaces.MovieSessionService;
 import com.dev.cinema.service.mapper.MovieSessionMapper;
 import java.time.LocalDate;
@@ -31,16 +31,17 @@ public class MovieSessionController {
     }
 
     @GetMapping("/available")
-    public List<MovieSessionResponseDto> getSessionsByDate(@RequestParam Long movieId,
-                    @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
+    public List<MovieSessionResponseDto> getSessionsByDate(
+                @RequestParam Long movieId,
+                @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate date) {
         return sessionService.findAvailableSessions(movieId, date).stream()
-                .map(sessionMapper::mapMovieSession)
+                .map(sessionMapper::mapToDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping
     public void addSession(@RequestBody MovieSessionRequestDto dto) {
-        MovieSession session = sessionMapper.unmapMovieSession(dto);
+        MovieSession session = sessionMapper.mapToEntity(dto);
         sessionService.add(session);
     }
 }

@@ -1,9 +1,9 @@
 package com.dev.cinema.service.impl;
 
 import com.dev.cinema.dao.interfaces.OrderDao;
-import com.dev.cinema.model.Order;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.Order;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.dev.cinema.service.interfaces;
 
-import com.dev.cinema.model.CinemaHall;
+import com.dev.cinema.model.entity.CinemaHall;
 import java.util.List;
 
 public interface CinemaHallService {

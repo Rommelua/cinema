@@ -1,7 +1,7 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.MovieSessionDao;
-import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.entity.MovieSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collections;
@@ -45,5 +45,10 @@ public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements Mo
                     movieId, date, e);
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public MovieSession get(Long id) {
+        return super.get(id, MovieSession.class);
     }
 }

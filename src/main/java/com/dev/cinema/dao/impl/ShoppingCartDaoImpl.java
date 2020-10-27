@@ -1,8 +1,8 @@
 package com.dev.cinema.dao.impl;
 
 import com.dev.cinema.dao.interfaces.ShoppingCartDao;
-import com.dev.cinema.model.ShoppingCart;
-import com.dev.cinema.model.User;
+import com.dev.cinema.model.entity.ShoppingCart;
+import com.dev.cinema.model.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
