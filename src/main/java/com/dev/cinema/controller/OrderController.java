@@ -5,6 +5,7 @@ import com.dev.cinema.model.entity.ShoppingCart;
 import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.OrderService;
 import com.dev.cinema.service.interfaces.ShoppingCartService;
+import com.dev.cinema.service.interfaces.UserService;
 import com.dev.cinema.service.mapper.OrderMapper;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,19 +21,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService cartService;
+    private final UserService userService;
     private final OrderMapper mapper;
 
     @Autowired
-    public OrderController(OrderService orderService,
-                           ShoppingCartService cartService, OrderMapper mapper) {
+    public OrderController(OrderService orderService, ShoppingCartService cartService,
+                           UserService userService, OrderMapper mapper) {
         this.orderService = orderService;
         this.cartService = cartService;
+        this.userService = userService;
         this.mapper = mapper;
     }
 
     @PostMapping("/complete")
     public void completeOrder(@RequestParam Long userId) {
-        ShoppingCart shoppingCart = cartService.getByUser(new User(userId));
+        User user = userService.get(userId);
+        ShoppingCart shoppingCart = cartService.getByUser(user);
         orderService.completeOrder(shoppingCart);
     }
 
