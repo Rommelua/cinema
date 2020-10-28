@@ -10,10 +10,10 @@ import com.dev.cinema.service.mapper.OrderMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,15 +34,16 @@ public class OrderController {
     }
 
     @PostMapping("/complete")
-    public void completeOrder(@RequestParam Long userId) {
-        User user = userService.get(userId);
+    public void completeOrder(Authentication authentication) {
+        User user = userService.getUser(authentication);
         ShoppingCart shoppingCart = cartService.getByUser(user);
         orderService.completeOrder(shoppingCart);
     }
 
     @GetMapping
-    public List<OrderResponseDto> getOrderHistory(@RequestParam Long userId) {
-        return orderService.getOrderHistory(new User(userId)).stream()
+    public List<OrderResponseDto> getOrderHistory(Authentication authentication) {
+        User user = userService.getUser(authentication);
+        return orderService.getOrderHistory(user).stream()
                 .map(mapper::mapToDto)
                 .collect(Collectors.toList());
     }
