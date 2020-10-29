@@ -5,13 +5,11 @@ import com.dev.cinema.validation.FieldsValueMatch;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@FieldsValueMatch.List({
-        @FieldsValueMatch(
-                field = "password",
-                fieldMatch = "passwordRepeat",
-                message = "Passwords do not match!"
-        )
-})
+@FieldsValueMatch(
+        field = "password",
+        fieldMatch = "passwordRepeat",
+        message = "Passwords do not match!"
+)
 public class UserRequestDto {
     @Email
     private String email;

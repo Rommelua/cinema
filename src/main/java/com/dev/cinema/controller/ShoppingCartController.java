@@ -39,13 +39,13 @@ public class ShoppingCartController {
     public void addMovieSessionToCart(@RequestParam Long sessionId,
                                       Authentication authentication) {
         MovieSession movieSession = sessionService.get(sessionId);
-        User user = userService.getUser(authentication);
+        User user = userService.findByEmail(authentication.getName());
         cartService.addSession(movieSession, user);
     }
 
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(Authentication authentication) {
-        User user = userService.getUser(authentication);
+        User user = userService.findByEmail(authentication.getName());
         ShoppingCart cart = cartService.getByUser(user);
         return cartMapper.mapToDto(cart);
     }

@@ -3,10 +3,7 @@ package com.dev.cinema.service.impl;
 import com.dev.cinema.dao.interfaces.UserDao;
 import com.dev.cinema.model.entity.User;
 import com.dev.cinema.service.interfaces.UserService;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,13 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        return userDao.findByEmail(email);
-    }
-
-    @Override
-    public User getUser(Authentication authentication) {
-        UserDetails details = (UserDetails) authentication.getPrincipal();
-        return findByEmail(details.getUsername()).get();
+    public User findByEmail(String email) {
+        return userDao.findByEmail(email).get();
     }
 }
