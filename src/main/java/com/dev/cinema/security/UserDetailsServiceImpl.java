@@ -23,7 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         try {
             user = service.findByEmail(email);
         } catch (Exception e) {
-            throw new UsernameNotFoundException("User with email {" + email + "} has not been found!");
+            throw new UsernameNotFoundException("User with email {" + email
+                                                + "} has not been found!");
         }
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getEmail())
